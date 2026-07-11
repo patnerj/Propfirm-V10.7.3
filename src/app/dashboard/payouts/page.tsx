@@ -58,7 +58,16 @@ export default function PayoutsPage() {
         loading={loading}
       />
 
-      <div className="grid lg:grid-cols-3 gap-4">
+      {/* V10.7.5 hotfix: `grid lg:grid-cols-3` left grid-template-columns unset
+          below the lg breakpoint (display:grid with no explicit columns), so
+          grid items didn't get the `minmax(0,1fr)` sizing Tailwind's grid-cols-N
+          utilities provide. The order-history table inside could then stretch
+          this whole container (and therefore the page) to its natural content
+          width on mobile, even though the table itself has its own
+          overflow-x-auto wrapper -- the ancestor was never constrained enough
+          to make that wrapper's scroll kick in instead of the whole page
+          widening. Explicit grid-cols-1 fixes the sizing at every breakpoint. */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 space-y-4">
           {/* KYC gate */}
           {kycApproved === false && (
