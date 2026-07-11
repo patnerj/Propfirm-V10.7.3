@@ -30,6 +30,7 @@ export function AccountSwitcher({ onSwitched }: Props) {
   const [accounts, setAccounts] = useState<TradableAccount[] | null>(null)
   const [open, setOpen] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [align, setAlign] = useState<'left' | 'right'>('right')
   const ref = useRef<HTMLDivElement>(null)
 
   async function load() {
@@ -38,6 +39,21 @@ export function AccountSwitcher({ onSwitched }: Props) {
   }
 
   useEffect(() => { void load() }, [])
+
+  // V10.7.5 hotfix: the switcher is used both left-positioned (dashboard header)
+  // and right-positioned (trading terminal panels). A fixed anchor overflows the
+  // viewport in one of those contexts, so pick left/right based on actual space
+  // available when the dropdown opens (256px dropdown width, 16px safety margin).
+  function toggleOpen() {
+    if (!open && ref.current) {
+      const rect = ref.current.getBoundingClientRect()
+      const dropdownWidth = 256
+      const margin = 16
+      const spaceOnRight = window.innerWidth - rect.left
+      setAlign(spaceOnRight >= dropdownWidth + margin ? 'left' : 'right')
+    }
+    setOpen((v) => !v)
+  }
 
   // close on outside tap (mobile-friendly)
   useEffect(() => {
@@ -89,7 +105,7 @@ export function AccountSwitcher({ onSwitched }: Props) {
     <div ref={ref} className="relative">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={toggleOpen}
         disabled={busy}
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -114,7 +130,10 @@ export function AccountSwitcher({ onSwitched }: Props) {
       {open && (
         <div
           role="listbox"
-          className="absolute z-50 mt-1.5 w-64 right-0 rounded-xl border border-white/10 bg-[#0F1729] shadow-2xl p-1.5"
+          className={cn(
+            'absolute z-50 mt-1.5 w-64 max-w-[calc(100vw-2rem)] rounded-xl border border-white/10 bg-[#0F1729] shadow-2xl p-1.5',
+            align === 'left' ? 'left-0' : 'right-0'
+          )}
         >
           {accounts.map((a) => (
             <button
