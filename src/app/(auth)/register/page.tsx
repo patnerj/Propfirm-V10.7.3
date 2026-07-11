@@ -67,7 +67,7 @@ export default function RegisterPage() {
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold tracking-tight">Create free account</h1>
           <p className="text-sm text-text-muted mt-1">
-            Pass the challenge. Get funded. Keep up to 90%.
+            Pass the challenge. Get funded. Keep up to 85%.
           </p>
         </div>
 

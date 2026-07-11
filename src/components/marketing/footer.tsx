@@ -46,7 +46,7 @@ export function MarketingFooter() {
             <Logo />
             <p className="text-sm text-text-muted max-w-xs">
               An institutional-grade prop firm. Pass our evaluation, trade our capital,
-              keep up to 90% of your profits.
+              keep up to 85% of your profits.
             </p>
             <div className="flex items-center gap-2 pt-2">
               <span className="h-2 w-2 rounded-full bg-success animate-pulse" />

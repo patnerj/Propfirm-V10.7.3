@@ -39,7 +39,7 @@ export function Hero() {
           >
             Trade <span className="text-accent">our capital.</span>
             <br />
-            Keep <span className="text-success">90%</span> of the profits.
+            Keep <span className="text-success">85%</span> of the profits.
           </motion.h1>
 
           <motion.p

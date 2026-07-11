@@ -46,11 +46,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title:       { default: brandName, template: '%s' },
-    description: 'Pass the evaluation, trade our capital, keep up to 90% of your profits. Institutional-grade prop firm built for serious traders.',
+    description: 'Pass the evaluation, trade our capital, keep up to 85% of your profits. Institutional-grade prop firm built for serious traders.',
     applicationName: brandName,
     openGraph: {
       title:       brandName,
-      description: 'Pass the evaluation, trade our capital, keep up to 90% of your profits.',
+      description: 'Pass the evaluation, trade our capital, keep up to 85% of your profits.',
       type:        'website',
       images:      branding?.logo_url ? [branding.logo_url] : undefined,
     },

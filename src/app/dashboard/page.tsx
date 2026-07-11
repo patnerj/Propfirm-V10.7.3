@@ -339,7 +339,7 @@ function ResendVerifyButton() {
 function NoChallengeCTA() {
   const perks = [
     { icon: Wallet,     title: 'Capital up to $200K', body: 'Trade firm capital across multiple account sizes.' },
-    { icon: Target,     title: 'Keep up to 90%',      body: 'Industry-leading profit split on funded accounts.' },
+    { icon: Target,     title: 'Keep up to 85%',      body: 'Industry-leading profit split on funded accounts.' },
     { icon: TrendingUp, title: 'Two-step evaluation',  body: 'Prove consistency, then get funded.' },
   ]
   return (

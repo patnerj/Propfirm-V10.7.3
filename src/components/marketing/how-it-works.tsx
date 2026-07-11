@@ -23,8 +23,8 @@ const STEPS = [
     n: '03',
     icon: Trophy,
     title: 'Get paid',
-    body: 'Withdraw your share of profits every 14 days. Up to 90% profit split on consistent performance.',
-    items: ['80% baseline split', 'Up to 90% scaling', 'Paid in 24 hours'],
+    body: 'Withdraw your share of profits every 14 days. Up to 85% profit split depending on your plan.',
+    items: ['80% baseline split', 'Up to 85% on Elite', 'Paid in 24 hours'],
   },
 ]
 

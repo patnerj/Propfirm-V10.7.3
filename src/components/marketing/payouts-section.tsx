@@ -29,7 +29,7 @@ export function PayoutsSection() {
               {[
                 'Bi-weekly payout cycle — withdraw on your schedule',
                 'Crypto (USDT) or Wise — your choice',
-                'Profit split scales 80% → 85% → 90% with milestones',
+                'Profit split up to 85% depending on your plan',
                 'Account scaling: hit 10% profit, get a bigger account',
                 'No hidden fees, no surprises, fully transparent',
               ].map((it) => (

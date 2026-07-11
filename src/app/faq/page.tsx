@@ -40,7 +40,7 @@ const SECTIONS: Section[] = [
     title: 'Payouts',
     items: [
       { q: 'How much do I keep?',
-        a: 'Your profit split starts at 80% and scales up to 90% after consistent performance. The exact split is shown on each plan before you buy.' },
+        a: 'Your profit split is 80% on Starter and Pro, and 85% on Elite. The exact split is shown on each plan before you buy.' },
       { q: 'When do I get paid?',
         a: 'The first payout happens 14 days after funding. After that, payouts cycle bi-weekly. Once approved, funds typically arrive within 24 hours.' },
       { q: 'How do I withdraw?',
