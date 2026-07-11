@@ -192,6 +192,14 @@ function invalidateRelated(path: string) {
   if (path.startsWith('/notifications')) invalidateFxsim('/notifications')
   if (path.startsWith('/pending-order')) invalidateFxsim('/pending-order/my')
   if (path.startsWith('/payout-method')) invalidateFxsim('/payout-method')
+  // V10.7.5 hotfix: kycGet() caches for 10s (`cache: 10_000`), but kyc/submit
+  // was never in this mapping -- the KYC page's post-submit load() call could
+  // hit the stale pre-submit cache and keep showing the upload form even
+  // though the backend had already accepted the documents. Only a full page
+  // reload (which clears the in-memory cache module) revealed the real
+  // 'under review' status. Confirmed via network trace: kyc/submit returned
+  // 200, but the UI stayed on the upload form until reload.
+  if (path.startsWith('/kyc/submit'))    invalidateFxsim('/kyc')
 
   // ── Admin mutations ─────────────────────────────────────────────────
   // After admin actions, clear the GET caches the admin pages depend on so
