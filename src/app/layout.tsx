@@ -16,18 +16,48 @@ import './globals.css'
 import { Providers } from '@/components/providers'
 import { LiveChat } from '@/components/marketing/live-chat'
 
-export const metadata: Metadata = {
-  title:       { default: 'LaunchAPropFirm', template: '%s' },
-  description: 'Pass the evaluation, trade our capital, keep up to 90% of your profits. Institutional-grade prop firm built for serious traders.',
-  applicationName: 'LaunchAPropFirm',
-  openGraph: {
-    title:       'LaunchAPropFirm',
-    description: 'Pass the evaluation, trade our capital, keep up to 90% of your profits.',
-    type:        'website',
-  },
-  twitter: { card: 'summary_large_image' },
-  icons: { icon: '/favicon.svg' },
-  manifest: '/manifest.json',
+// V10.7.5 hotfix: favicon was hardcoded to /favicon.svg, completely ignoring
+// the admin-configured favicon_url in Branding Center -- uploading a favicon
+// there had zero effect on the actual browser tab icon. Fetching the public,
+// unauthenticated /branding endpoint here (Next.js metadata can be async via
+// generateMetadata) and using its favicon_url/brand_name fixes that, while
+// falling back to the previous static defaults if the API is unreachable so
+// the site never breaks because of this.
+async function getBranding() {
+  try {
+    const res = await fetch('https://app.launchapropfirm.com/wp-json/fxsim/v1/branding', {
+      next: { revalidate: 300 }, // 5 min cache — branding rarely changes, avoids hammering the API
+    })
+    if (!res.ok) throw new Error('branding fetch failed')
+    return await res.json() as {
+      brand_name?: string
+      favicon_url?: string
+      logo_url?: string
+    }
+  } catch {
+    return null
+  }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const branding = await getBranding()
+  const brandName = branding?.brand_name || 'LaunchAPropFirm'
+  const favicon = branding?.favicon_url || '/favicon.svg'
+
+  return {
+    title:       { default: brandName, template: '%s' },
+    description: 'Pass the evaluation, trade our capital, keep up to 90% of your profits. Institutional-grade prop firm built for serious traders.',
+    applicationName: brandName,
+    openGraph: {
+      title:       brandName,
+      description: 'Pass the evaluation, trade our capital, keep up to 90% of your profits.',
+      type:        'website',
+      images:      branding?.logo_url ? [branding.logo_url] : undefined,
+    },
+    twitter: { card: 'summary_large_image' },
+    icons: { icon: favicon },
+    manifest: '/manifest.json',
+  }
 }
 
 export const viewport: Viewport = {
