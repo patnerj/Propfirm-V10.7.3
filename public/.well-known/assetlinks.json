@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.launchapropfirm.trader",
+      "sha256_cert_fingerprints": [
+        "93:3A:74:D1:2D:22:28:5E:4E:51:5D:44:F5:1B:2A:2B:A1:3A:08:F8:19:9E:A1:BC:2D:D6:25:B3:FD:A7:1B:D0"
+      ]
+    }
+  }
+]
