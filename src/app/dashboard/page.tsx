@@ -121,19 +121,19 @@ export default function DashboardOverview() {
         transition={{ duration: 0.35 }}
         className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3"
       >
-        <div>
+        <div className="min-w-0">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
             Welcome back, {user?.display_name?.split(' ')[0] || user?.username}
           </h1>
           <p className="text-sm text-text-muted mt-1">Here&apos;s a snapshot of your trading account.</p>
         </div>
         {!noChallenge && (
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 min-w-0">
             {/* V10.7.5 BUG 2: switcher on the main dashboard too, so a trader can
                 compare accounts without entering the trading terminal. Same
                 endpoints, same self-hiding behavior for single-account users. */}
             <AccountSwitcher onSwitched={refreshAll} />
-            <Button asChild variant="outline" size="sm">
+            <Button asChild variant="outline" size="sm" className="shrink-0">
               <Link href="/dashboard/challenges">View all challenges <ArrowRight className="h-3.5 w-3.5" /></Link>
             </Button>
           </div>
