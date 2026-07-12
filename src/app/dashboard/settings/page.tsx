@@ -21,9 +21,12 @@ export default function SettingsPage() {
   const signout         = useAuth((s) => s.signout)
   const refresh         = useAuth((s) => s.refresh)
 
-  const [twoFA, setTwoFA]   = useState<boolean | null>(null)
-  const [busy,  setBusy]    = useState(false)
+  const [twoFA,    setTwoFA]    = useState<boolean | null>(null)
+  const [busy,     setBusy]     = useState(false)
   const [resending, setResending] = useState(false)
+  // V10.7.6 2FA 2-step enable flow
+  const [tfaPending, setTfaPending] = useState(false)  // waiting for OTP confirmation
+  const [tfaCode,    setTfaCode]    = useState('')      // OTP the user types
 
   // Load 2FA status
   useEffect(() => {
@@ -35,11 +38,44 @@ export default function SettingsPage() {
 
   const toggle2FA = async () => {
     if (twoFA == null) return
+    if (twoFA) {
+      // Disabling: single step, no OTP needed
+      setBusy(true)
+      const res = await api.auth.twoFactorToggle(false)
+      setBusy(false)
+      if (res.ok) { setTwoFA(false); toast.success('2FA disabled') }
+      else        toast.error(res.error)
+      return
+    }
+    // Enabling step 1: request OTP email
     setBusy(true)
-    const res = await api.auth.twoFactorToggle(!twoFA)
+    const res = await api.auth.twoFactorToggle(true)
     setBusy(false)
-    if (res.ok) { setTwoFA(res.data.enabled); toast.success(res.data.enabled ? '2FA enabled' : '2FA disabled') }
-    else        toast.error(res.error)
+    if (res.ok && res.data.pending) {
+      setTfaPending(true)
+      setTfaCode('')
+      toast.success('Check your email for a 6-digit code')
+    } else if (res.ok && res.data.enabled) {
+      setTwoFA(true); toast.success('2FA enabled')
+    } else if (!res.ok) {
+      toast.error(res.error || 'Something went wrong')
+    } else {
+      toast.error('Something went wrong')
+    }
+  }
+
+  const confirmTfaCode = async () => {
+    if (!tfaCode || tfaCode.length !== 6) { toast.error('Enter the 6-digit code from your email'); return }
+    setBusy(true)
+    const res = await api.auth.twoFactorToggle(true, tfaCode)
+    setBusy(false)
+    if (res.ok && res.data.enabled) {
+      setTwoFA(true); setTfaPending(false); setTfaCode(''); toast.success('2FA enabled')
+    } else if (!res.ok) {
+      toast.error(res.error || 'Invalid code — try again')
+    } else {
+      toast.error(res.data.message || 'Invalid code — try again')
+    }
   }
 
   const resendVerify = async () => {
@@ -131,14 +167,37 @@ export default function SettingsPage() {
                 <Button
                   variant={twoFA ? 'outline' : 'primary'}
                   size="sm"
-                  loading={busy}
-                  onClick={toggle2FA}
+                  loading={busy && !tfaPending}
+                  onClick={tfaPending ? undefined : toggle2FA}
+                  disabled={tfaPending}
                 >
                   {twoFA ? 'Disable' : 'Enable'}
                 </Button>
               )}
             </div>
           </div>
+
+          {/* V10.7.6: OTP confirmation step shown after clicking Enable */}
+          {tfaPending && (
+            <div className="rounded-lg border border-accent/40 bg-accent-muted/20 p-3 space-y-2">
+              <p className="text-xs text-text-muted">
+                A 6-digit code was sent to <strong>{user.email}</strong>. Enter it below to confirm.
+              </p>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={6}
+                  placeholder="123456"
+                  value={tfaCode}
+                  onChange={(e) => setTfaCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  className="flex-1 h-9 rounded-md border border-border bg-surface px-3 text-sm font-mono tracking-widest focus:outline-none focus:ring-2 focus:ring-accent"
+                />
+                <Button size="sm" loading={busy} onClick={confirmTfaCode}>Confirm</Button>
+                <Button size="sm" variant="outline" onClick={() => { setTfaPending(false); setTfaCode('') }}>Cancel</Button>
+              </div>
+            </div>
+          )}
 
           <hr className="border-border-subtle" />
 

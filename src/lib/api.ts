@@ -34,7 +34,7 @@ export const api = {
     resendVerification: () => fxsim<{ success: true; message: string }>('/auth/resend-verification', { method: 'POST' }),
     verifyEmail: (token: string) => fxsim<{ status: 'success' | 'expired' | 'invalid'; message: string }>(`/auth/verify-email?token=${encodeURIComponent(token)}&format=json`, { public: true }),
     twoFactorStatus:    () => fxsim<{ enabled: boolean }>('/auth/2fa/status', { cache: 60_000 }),
-    twoFactorToggle:    (enable: boolean) => fxsim<{ success: true; enabled: boolean }>('/auth/2fa/toggle', { body: { enable } }),
+    twoFactorToggle:    (enable: boolean, code?: string) => fxsim<{ success: boolean; enabled?: boolean; pending?: boolean; message?: string }>('/auth/2fa/toggle', { body: code ? { enable, code } : { enable } }),
   },
 
   // ── Public ────────────────────────────────────────────────────────────
