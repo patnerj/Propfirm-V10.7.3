@@ -292,9 +292,68 @@ async function rawFetch<T>(
   return { ok: true, status: res.status, data: parsed as T }
 }
 
-// ── SSE helper (unchanged behaviour) ───────────────────────────────────────
-export function fxsimStream(): EventSource | null {
-  if (typeof window === 'undefined' || !FXSIM_BASE || !session.nonce) return null
-  const url = `${FXSIM_BASE}/stream?_wpnonce=${encodeURIComponent(session.nonce)}`
-  return new EventSource(url, { withCredentials: true })
+// ── SSE helper ─────────────────────────────────────────────────────────────
+// EventSource can't send custom headers, so we can't pass the Bearer token
+// through it. This AbortController-based fetch stream does the same job and
+// supports Authorization headers properly.
+export interface FxsimStream {
+  close: () => void
+  addEventListener: (event: string, handler: (ev: { data: string }) => void) => void
+  set onopen(fn: () => void)
+  set onerror(fn: () => void)
+}
+
+export function fxsimStream(): FxsimStream | null {
+  if (typeof window === 'undefined' || !FXSIM_BASE || !session.bearer) return null
+
+  const url   = `${FXSIM_BASE}/stream`
+  const ctrl  = new AbortController()
+  const listeners: Record<string, ((ev: { data: string }) => void)[]> = {}
+  let _onopen:  (() => void) | null = null
+  let _onerror: (() => void) | null = null
+
+  const run = async () => {
+    try {
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${session.bearer}` },
+        signal:  ctrl.signal,
+      })
+      if (!res.ok || !res.body) { _onerror?.(); return }
+      _onopen?.()
+      const reader  = res.body.getReader()
+      const decoder = new TextDecoder()
+      let   buf     = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        buf += decoder.decode(value, { stream: true })
+        const lines = buf.split('\n')
+        buf = lines.pop() ?? ''
+        let event = 'message'
+        for (const line of lines) {
+          if (line.startsWith('event:'))      event = line.slice(6).trim()
+          else if (line.startsWith('data:')) {
+            const data = line.slice(5).trim()
+            listeners[event]?.forEach((fn) => fn({ data }))
+            event = 'message'
+          }
+        }
+      }
+    } catch (err: unknown) {
+      if (err instanceof DOMException && err.name === 'AbortError') return
+      _onerror?.()
+    }
+  }
+
+  run()
+
+  return {
+    close: () => ctrl.abort(),
+    addEventListener(event: string, handler: (ev: { data: string }) => void) {
+      if (!listeners[event]) listeners[event] = []
+      listeners[event].push(handler)
+    },
+    set onopen(fn: () => void)  { _onopen  = fn },
+    set onerror(fn: () => void) { _onerror = fn },
+  }
 }

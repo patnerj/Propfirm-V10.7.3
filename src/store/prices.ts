@@ -2,7 +2,7 @@
 
 import { create } from 'zustand'
 import { api } from '@/lib/api'
-import { fxsimStream } from '@/lib/fxsim'
+import { fxsimStream, type FxsimStream } from '@/lib/fxsim'
 import type { PricesMap, PriceTick } from '@/types/api'
 
 interface PriceState {
@@ -17,7 +17,7 @@ interface PriceState {
 }
 
 let pollTimer:   ReturnType<typeof setInterval> | null = null
-let stream:      EventSource | null = null
+let stream:      FxsimStream | null = null
 let visListener: (() => void) | null = null
 let refCount     = 0
 let sseFailures  = 0
