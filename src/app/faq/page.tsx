@@ -51,7 +51,7 @@ const SECTIONS: Section[] = [
     title: 'Account & security',
     items: [
       { q: 'Do you offer 2FA?',
-        a: 'Yes. You can enable time-based one-time-password (TOTP) 2FA from your account settings. Use any authenticator app (Google Authenticator, Authy, 1Password).' },
+        a: 'Yes. You can enable two-factor authentication (2FA) from your account settings. Once enabled, a one-time code will be sent to your email address on every sign-in.' },
       { q: 'Can I have multiple accounts?',
         a: 'Yes, you can run multiple challenges or funded accounts simultaneously — up to a combined $400K in funded capital per person.' },
       { q: 'What about API access?',

@@ -121,7 +121,7 @@ export default function SettingsPage() {
               </div>
               <div>
                 <div className="text-sm font-medium">Two-factor authentication</div>
-                <div className="text-xs text-text-muted">Add a time-based code from your authenticator app on every sign-in.</div>
+                <div className="text-xs text-text-muted">Get a one-time code sent to your email on every sign-in.</div>
               </div>
             </div>
             <div className="shrink-0">
