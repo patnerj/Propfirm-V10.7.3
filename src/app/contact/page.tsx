@@ -29,7 +29,7 @@ export default function ContactPage() {
 
         <section className="pb-24">
           <div className="container max-w-3xl">
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="grid sm:grid-cols-2 gap-4">
+            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Card className="p-6">
                 <Mail className="h-5 w-5 text-accent mb-3" />
                 <div className="font-semibold mb-1">Email support</div>

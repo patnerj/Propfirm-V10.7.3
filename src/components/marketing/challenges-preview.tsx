@@ -50,7 +50,7 @@ export function ChallengesPreview() {
           </div>
         )}
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {plans === null && !error && Array.from({ length: 4 }).map((_, i) => (
             <Card key={i} className="p-6 space-y-3">
               <Skeleton className="h-4 w-24" />

@@ -200,13 +200,13 @@ function BannerEditor({ draft, set, onSave, onCancel, busy }:
           )}
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div><Label>Title (internal)</Label><Input value={draft.title ?? ''} onChange={(e) => set('title', e.target.value)} className="mt-1" placeholder="Black Friday" /></div>
           <div><Label>Priority</Label><Input type="number" value={draft.priority ?? 0} onChange={(e) => set('priority', Number(e.target.value))} className="mt-1" /></div>
         </div>
         <div><Label>Message *</Label><Textarea value={draft.message ?? ''} onChange={(e) => set('message', e.target.value)} rows={2} className="mt-1" placeholder="20% OFF — Weekend Sale!" /></div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <Label>Placement</Label>
             <select value={draft.placement} onChange={(e) => set('placement', e.target.value)} className="mt-1 w-full h-10 rounded-md bg-bg-subtle border border-border-subtle px-3 text-sm">
@@ -227,12 +227,12 @@ function BannerEditor({ draft, set, onSave, onCancel, busy }:
           <div><Label>Page path</Label><Input value={draft.scope_path ?? ''} onChange={(e) => set('scope_path', e.target.value)} className="mt-1" placeholder="/challenges" /></div>
         )}
 
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div><Label>CTA label</Label><Input value={draft.cta_label ?? ''} onChange={(e) => set('cta_label', e.target.value)} className="mt-1" placeholder="Claim offer" /></div>
           <div><Label>CTA link</Label><Input value={draft.cta_url ?? ''} onChange={(e) => set('cta_url', e.target.value)} className="mt-1" placeholder="/challenges" /></div>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex items-center gap-3">
             <div><Label>Background</Label><input type="color" value={draft.bg_color || '#7c6ef5'} onChange={(e) => set('bg_color', e.target.value)} className="mt-1 h-10 w-16 rounded bg-transparent border border-border-subtle" /></div>
             <div><Label>Text</Label><input type="color" value={draft.text_color || '#ffffff'} onChange={(e) => set('text_color', e.target.value)} className="mt-1 h-10 w-16 rounded bg-transparent border border-border-subtle" /></div>
@@ -240,7 +240,7 @@ function BannerEditor({ draft, set, onSave, onCancel, busy }:
           <div><Label>Coupon code (optional)</Label><Input value={draft.coupon_code ?? ''} onChange={(e) => set('coupon_code', e.target.value)} className="mt-1" placeholder="reserved for promotions" /></div>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div><Label>Starts</Label><Input type="datetime-local" value={draft.starts_at ?? ''} onChange={(e) => set('starts_at', e.target.value)} className="mt-1" /></div>
           <div><Label>Ends</Label><Input type="datetime-local" value={draft.ends_at ?? ''} onChange={(e) => set('ends_at', e.target.value)} className="mt-1" /></div>
           <div><Label>Countdown to</Label><Input type="datetime-local" value={draft.countdown_to ?? ''} onChange={(e) => set('countdown_to', e.target.value)} className="mt-1" /></div>

@@ -276,7 +276,7 @@ export default function KycPage() {
 
           {/* Upload form (not started / rejected) */}
           {showForm && (
-            <div className="grid lg:grid-cols-2 gap-4 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
               {/* Left column — document uploads + submit */}
               <div className="space-y-4 order-2 lg:order-1">
                 <div className="grid gap-4">

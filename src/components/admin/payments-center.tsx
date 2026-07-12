@@ -66,7 +66,7 @@ function StripeCard() {
           <Label htmlFor="pk">Publishable key</Label>
           <Input id="pk" value={pub} onChange={(e) => setPub(e.target.value)} placeholder="pk_live_… or pk_test_…" />
         </div>
-        <div className="grid sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1.5">
             <Label htmlFor="sk">Secret key {status?.has_secret_key && <span className="text-2xs text-success">• configured</span>}</Label>
             <Input id="sk" type="password" value={secret} onChange={(e) => setSecret(e.target.value)} placeholder={status?.has_secret_key ? '•••••••• (leave blank to keep)' : 'sk_live_… or sk_test_…'} autoComplete="off" />
@@ -188,7 +188,7 @@ function CryptoCard() {
                 Enabled
               </label>
             </div>
-            <div className="grid sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <Input value={n.address} onChange={(e) => update(n.network, { address: e.target.value })} placeholder={`${n.network} wallet address`} className="text-2xs" />
               <Input value={n.label} onChange={(e) => update(n.network, { label: e.target.value })} placeholder="Display label (optional)" className="text-2xs" />
             </div>

@@ -125,7 +125,7 @@ export default function AdminSettingsPage() {
           <Card>
             <CardHeader><CardTitle>Brand voice</CardTitle></CardHeader>
             <CardContent>
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Field id="brand_tagline"    label="Tagline"            value={draft.brand_tagline}    onChange={(v) => update('brand_tagline', v)} />
               </div>
               {/* Theme colour fields removed in V10.6: they were stored but not

@@ -9,7 +9,7 @@ export function PayoutsSection() {
     <section className="py-20 lg:py-28 relative overflow-hidden" id="payouts">
       <div className="absolute inset-0 -z-10 bg-aurora opacity-50" />
       <div className="container">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}

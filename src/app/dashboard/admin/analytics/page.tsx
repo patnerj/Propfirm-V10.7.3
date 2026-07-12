@@ -89,7 +89,7 @@ export default function AdminAnalyticsPage() {
       </Card>
 
       {/* Growth + Plans side-by-side */}
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
             <CardTitle>Growth</CardTitle>
@@ -109,7 +109,7 @@ export default function AdminAnalyticsPage() {
       </div>
 
       {/* Challenge analytics */}
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card>
           <CardHeader><CardTitle>Challenge status breakdown</CardTitle></CardHeader>
           <CardContent>

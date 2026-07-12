@@ -78,7 +78,7 @@ export function EmailSettingsPanel() {
           Sender name and support address default to your Branding settings when left blank.
         </p>
 
-        <div className="grid sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="sm:col-span-2 space-y-1.5">
             <Label htmlFor="sm-host">SMTP host</Label>
             <Input id="sm-host" value={d.host} onChange={(e) => set('host', e.target.value)} placeholder="smtp.your-provider.com" />
@@ -89,7 +89,7 @@ export function EmailSettingsPanel() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="space-y-1.5">
             <Label htmlFor="sm-user">Username</Label>
             <Input id="sm-user" value={d.user} onChange={(e) => set('user', e.target.value)} placeholder="SMTP username" autoComplete="off" />
@@ -114,7 +114,7 @@ export function EmailSettingsPanel() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="space-y-1.5">
             <Label htmlFor="sm-fn">From name</Label>
             <Input id="sm-fn" value={d.from_name} onChange={(e) => set('from_name', e.target.value)} placeholder="Defaults to brand name" />

@@ -18,7 +18,7 @@ export const AccountStrip = memo(function AccountStrip({ account, openPnL, compa
     return (
       compact
         ? <div className="flex gap-2 overflow-x-auto no-scrollbar pb-0.5">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="skel h-12 rounded-md shrink-0 w-28" />)}</div>
-        : <div className="grid gap-2 grid-cols-2 sm:grid-cols-4 lg:grid-cols-6">{Array.from({ length: 6 }).map((_, i) => <div key={i} className="skel h-12 rounded-md" />)}</div>
+        : <div className="grid grid-cols-1 gap-2 grid-cols-2 sm:grid-cols-4 lg:grid-cols-6">{Array.from({ length: 6 }).map((_, i) => <div key={i} className="skel h-12 rounded-md" />)}</div>
     )
   }
 
@@ -68,7 +68,7 @@ export const AccountStrip = memo(function AccountStrip({ account, openPnL, compa
   }
 
   return (
-    <div className="grid gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+    <div className="grid grid-cols-1 gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
       {visible.map((it, i) => (
         <motion.div
           key={it.label}

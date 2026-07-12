@@ -90,7 +90,7 @@ export function PriceFeedCard() {
         )}
 
         {/* Settings */}
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
             <Label>Source mode</Label>
             <select value={mode} onChange={(e) => setMode(e.target.value as 'auto'|'mt5'|'yahoo')}

@@ -258,7 +258,7 @@ export default function DashboardOverview() {
           </div>
 
           {/* Main row: challenge progress + equity chart */}
-          <div className="grid lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-1">
               {metrics
                 ? <ChallengeProgressCard metrics={metrics} />
@@ -292,7 +292,7 @@ export default function DashboardOverview() {
           </div>
 
           {/* Recent trades + Other challenges */}
-          <div className="grid lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-2">
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between">

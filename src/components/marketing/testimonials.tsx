@@ -40,7 +40,7 @@ export function Testimonials() {
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {STORIES.map((story, i) => (
             <motion.div
               key={story.name}

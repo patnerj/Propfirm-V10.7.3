@@ -46,7 +46,7 @@ function ChallengesPageSkeleton() {
         </section>
         <section className="pb-24">
           <div className="container">
-            <div className="grid lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               {Array.from({ length: 3 }).map((_, i) => (
                 <Card key={i} className="p-7 space-y-4">
                   <Skeleton className="h-3 w-24" />

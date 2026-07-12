@@ -138,7 +138,7 @@ export default function AffiliatePage() {
           <p className="text-2xs text-text-muted mt-1">Paid via crypto (USDT) or Wise. Set your destination, then request a withdrawal of your available balance.</p>
         </CardHeader>
         <CardContent className="space-y-5">
-          <div className="grid sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <label className="text-2xs text-text-muted uppercase tracking-wider">Payout method</label>
               <select

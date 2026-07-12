@@ -41,7 +41,7 @@ export function MarketingFooter() {
     <footer className="border-t border-border-subtle bg-bg-subtle/50 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-overlay opacity-30 pointer-events-none" />
       <div className="container relative py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_2fr]">
           <div className="space-y-4">
             <Logo />
             <p className="text-sm text-text-muted max-w-xs">

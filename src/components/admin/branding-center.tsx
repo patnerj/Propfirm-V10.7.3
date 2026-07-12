@@ -78,7 +78,7 @@ export function BrandingCenter() {
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Identity */}
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
             <Label htmlFor="bc-name">Company name</Label>
             <Input id="bc-name" value={vals.brand_name ?? ''} onChange={(e) => set('brand_name', e.target.value)} placeholder="Your Prop Firm" />
@@ -92,7 +92,7 @@ export function BrandingCenter() {
         </div>
 
         {/* Asset uploads */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {ASSETS.map((a) => (
             <AssetTile key={a.field} asset={a} url={vals[a.key] ?? ''}
               uploading={uploading === a.field}
@@ -112,7 +112,7 @@ export function BrandingCenter() {
         {/* Live previews */}
         <div>
           <div className="text-2xs uppercase tracking-wider text-text-faint mb-2.5">Live preview</div>
-          <div className="grid md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Sidebar */}
             <div className="rounded-lg border border-border-subtle overflow-hidden">
               <div className="px-3 py-2 text-2xs text-text-faint border-b border-border-subtle">Sidebar</div>

@@ -210,7 +210,7 @@ function FirstChallengeStep() {
         )}
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="sm:col-span-2 space-y-1.5"><Label>Challenge name</Label><Input value={name} onChange={(e) => setName(e.target.value)} /></div>
           <div className="space-y-1.5"><Label>Price (USD)</Label><Input type="number" value={price} onChange={(e) => setPrice(e.target.value)} /></div>
         </div>
@@ -220,7 +220,7 @@ function FirstChallengeStep() {
           <div className="space-y-1.5"><Label>Max drawdown %</Label><Input type="number" value={maxDd} onChange={(e) => setMaxDd(e.target.value)} /></div>
           <div className="space-y-1.5"><Label>Daily drawdown %</Label><Input type="number" value={dailyDd} onChange={(e) => setDailyDd(e.target.value)} /></div>
         </div>
-        <div className="grid sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="space-y-1.5"><Label>Funded profit split %</Label><Input type="number" value={split} onChange={(e) => setSplit(e.target.value)} /></div>
         </div>
         <p className="text-2xs text-text-faint">This creates a simple one-phase evaluation. Fine-tune rules, phases, and limits anytime in <Link href="/dashboard/admin/challenges" className="text-accent hover:underline">Challenges</Link>.</p>

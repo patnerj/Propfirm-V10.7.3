@@ -55,7 +55,7 @@ export default function TraderDetailPage() {
   if (!data) return (
     <div className="space-y-4">
       <Skeleton className="h-8 w-48" />
-      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4">{Array.from({ length: 3 }).map((_, i) => <Card key={i} className="p-6"><Skeleton className="h-32 w-full" /></Card>)}</div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4">{Array.from({ length: 3 }).map((_, i) => <Card key={i} className="p-6"><Skeleton className="h-32 w-full" /></Card>)}</div>
     </div>
   )
 
@@ -80,7 +80,7 @@ export default function TraderDetailPage() {
         </CardContent>
       </Card>
 
-      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4">
         {/* Left: account + KYC + note */}
         <div className="space-y-4">
           <Card>

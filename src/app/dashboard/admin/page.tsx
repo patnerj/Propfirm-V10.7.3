@@ -88,7 +88,7 @@ export default function AdminOverviewPage() {
 
       {/* Side-by-side recent panels */}
       {/* Recent activity previews */}
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <RecentPayments />
         <RecentChallenges />
       </div>
@@ -308,7 +308,7 @@ function DashboardTrends() {
   }
 
   return (
-    <div className="grid lg:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <Card>
         <CardHeader><CardTitle>Revenue trend</CardTitle></CardHeader>
         <CardContent>

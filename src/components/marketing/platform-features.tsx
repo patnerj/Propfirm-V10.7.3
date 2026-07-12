@@ -27,7 +27,7 @@ export function PlatformFeatures() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border-subtle rounded-xl overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border-subtle rounded-xl overflow-hidden">
           {FEATURES.map((f, i) => {
             const Icon = f.icon
             return (

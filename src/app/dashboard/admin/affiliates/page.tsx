@@ -215,7 +215,7 @@ function AffiliatePayoutsCard() {
                 </div>
                 {active?.id === p.id && (
                   <div className="px-4 sm:px-5 pb-4 space-y-2.5 bg-bg-subtle/40">
-                    <div className="grid sm:grid-cols-3 gap-2 pt-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-3">
                       <Input value={tx} onChange={(e) => setTx(e.target.value)} placeholder="Transaction hash / reference" className="h-9" />
                       <Input value={proof} onChange={(e) => setProof(e.target.value)} placeholder="Proof URL (optional)" className="h-9" />
                       <Input value={note} onChange={(e) => setNote(e.target.value)} placeholder="Note (optional)" className="h-9" />

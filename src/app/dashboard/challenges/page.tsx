@@ -124,7 +124,7 @@ export default function DashboardChallenges() {
                     >
                       <div className="p-4 sm:p-5">
                         {m ? (
-                          <div className="grid lg:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <ChallengeProgressCard metrics={m} />
                             <ChallengeDetailCard challenge={c} metrics={m} />
                           </div>

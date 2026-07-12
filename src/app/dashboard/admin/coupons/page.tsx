@@ -101,7 +101,7 @@ export default function AdminCouponsPage() {
             <Button size="sm" variant="ghost" onClick={() => setDraft(null)}><X className="h-4 w-4" /></Button>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div><Label>Code *</Label><Input value={draft.code ?? ''} onChange={(e) => set('code', e.target.value.toUpperCase())} className="mt-1 uppercase" placeholder="WEEKEND20" /></div>
               <div>
                 <Label>Type</Label>
@@ -113,7 +113,7 @@ export default function AdminCouponsPage() {
               <div><Label>{draft.type === 'percent' ? 'Percent off' : 'Amount off'}</Label><Input type="number" value={draft.value ?? 0} onChange={(e) => set('value', Number(e.target.value))} className="mt-1" /></div>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div><Label>Expiry (optional)</Label><Input type="datetime-local" value={draft.expires_at ?? ''} onChange={(e) => set('expires_at', e.target.value)} className="mt-1" /></div>
               <div><Label>Total usage limit (0 = ∞)</Label><Input type="number" value={draft.usage_limit ?? 0} onChange={(e) => set('usage_limit', Number(e.target.value))} className="mt-1" /></div>
               <div><Label>Per-user limit (1 = one-time)</Label><Input type="number" value={draft.per_user_limit ?? 0} onChange={(e) => set('per_user_limit', Number(e.target.value))} className="mt-1" /></div>

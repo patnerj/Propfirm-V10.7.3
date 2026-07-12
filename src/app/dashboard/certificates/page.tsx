@@ -42,7 +42,7 @@ export default function CertificatesPage() {
       </div>
 
       {list === null ? (
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {Array.from({ length: 2 }).map((_, i) => <Card key={i} className="p-6"><Skeleton className="h-64 w-full" /></Card>)}
         </div>
       ) : list.length === 0 ? (

@@ -43,7 +43,7 @@ export function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {STEPS.map((step, i) => {
             const Icon = step.icon
             return (
